@@ -3,3 +3,14 @@ body {
     font-family: 'Turret Road', cursive;
     color: white;
 }
+
+.container{
+    background-color: rgba(112, 51, 15, 0.507);
+    padding: 100px;
+    position: absolute;
+    width: 80%;
+    height: 90%;
+    top: 40px;
+    left: 140px;
+}
+
