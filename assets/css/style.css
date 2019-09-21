@@ -1,3 +1,5 @@
 body {
-    background-image: url("../images/background-blur-bright.jpg")
+    background-image: url("../images/background-blur-bright.jpg");
+    font-family: 'Turret Road', cursive;
+    color: white;
 }
