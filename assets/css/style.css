@@ -4,13 +4,17 @@ body {
     color: white;
 }
 
-.container{
+.container-fluid{
     background-color: rgba(112, 51, 15, 0.507);
     padding: 100px;
-    position: absolute;
     width: 80%;
     height: 90%;
-    top: 40px;
+    margin-top: 30px;
     left: 140px;
+}
+
+#questionheading{
+    font-size: 80px;
+    text-emphasis: bold;
 }
 
