@@ -7,12 +7,11 @@ body {
 
 .jumbotron  {
     background-color: rgba(112, 51, 15, 0.507);
-    padding: 100px;
     margin-top: 30px;
     text-align: center;
 }
 
-.btn {
+.btn-info {
     background-color: rgba(255, 166, 0, 0.829);
 }
 
