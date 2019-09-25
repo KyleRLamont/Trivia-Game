@@ -2,15 +2,18 @@ body {
     background-image: url("../images/background-blur-bright.jpg");
     font-family: 'Turret Road', cursive;
     color: white;
+    text-align: center;
 }
 
-.container-fluid{
+.jumbotron  {
     background-color: rgba(112, 51, 15, 0.507);
     padding: 100px;
-    width: 80%;
-    height: 90%;
     margin-top: 30px;
-    left: 140px;
+    text-align: center;
+}
+
+.btn {
+    background-color: rgba(255, 166, 0, 0.829);
 }
 
 #questionheading{
