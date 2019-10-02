@@ -1,8 +1,8 @@
 $(document).ready(function() {
     $("#quiztime").hide();
-    $("#start").on('click', trivia.startGame)
-    $(document).on('click', '.option', trivia.guessChecker);
-});
+    $("#start").on('click', startGame)
+    $(document).on('click', '.option', guessChecker);
+
 
 var trivia = {
     correct: 0,
@@ -43,8 +43,10 @@ var trivia = {
         q7: 'U.N. Owen Was Her',
         q8: '1453',
     },
+};
 
-    startGame: function() {
+
+    function startGame() {
         trivia.currentSet = 0;
         trivia.correct = 0;
         trivia.incorrect = 0;
@@ -55,15 +57,15 @@ var trivia = {
         $('#timer').text(trivia.timer);
         $('#start').hide();
         $('#quiztime').show();
-        trivia.nextQuestion();
-    },
+        nextQuestion();
+    };
 
-    nextQuestion: function(){
+    function nextQuestion(){
         trivia.timer = 30;
         $('#timer').removeClass('last-seconds');
         $('#timer').text(trivia.timer);
         if(!trivia.timerOn){
-          trivia.timerId = setInterval(trivia.timerRunning, 1000);
+          trivia.timerId = setInterval(timerRunning, 1000);
         }
         var questionContent = Object.values(trivia.questions)[trivia.currentSet];
         $('#question').text(questionContent);
@@ -71,9 +73,9 @@ var trivia = {
         $.each(questionOptions, function(index, key){
           $('#options').append($('<button class="option btn btn-info btn-lg">'+key+'</button>'));
         });
-    },
+    };
 
-    timerRunning: function(){
+    function timerRunning(){
         if(trivia.timer > -1 && trivia.currentSet < Object.keys(trivia.questions).length){
           $('#timer').text(trivia.timer);
           trivia.timer--;
@@ -84,7 +86,7 @@ var trivia = {
           trivia.unanswered++;
           trivia.result = false;
           clearInterval(trivia.timerId);
-          resultId = setTimeout(trivia.guessResult, 1000);
+          resultId = setTimeout(guessResult, 1000);
           $('#results').html('<h3>Oh no, out of time! The answer was '+ Object.values(trivia.answers)[trivia.currentSet] +'</h3>');
         } else if(trivia.currentSet === Object.keys(trivia.questions).length){
           $('#results').html('<h3>Thank you! Here is how you did:</h3>'+
@@ -95,31 +97,32 @@ var trivia = {
           $('#game').hide();
           $('#start').show();
         }
-    },
-    guessChecker: function() {
+    };
+    function guessChecker() {
     
         var currentAnswer = Object.values(trivia.answers)[trivia.currentSet];
         
         if($(this).text() === currentAnswer){
             $(this).addClass('btn-success').removeClass('btn-info');
+            $("#options").empty();
             trivia.correct++;
             clearInterval(trivia.timerId);
-            resultId = setTimeout(trivia.guessResult, 1000);
-            $('#results').html('<h3>Correct Answer!</h3>');
+            resultId = setTimeout(guessResult, 2000);
+            $('#results').html('<h2 class="btn-lg btn-success">' + currentAnswer + ' was the correct answer!</h2>');
         } else{
             $(this).addClass('btn-danger').removeClass('btn-info');
+            $("#options").empty();
             trivia.incorrect++;
             clearInterval(trivia.timerId);
-            resultId = setTimeout(trivia.guessResult, 1000);
-            $('#results').html('<h3>Better luck next time! The answer was '+ currentAnswer +'</h3>');
+            resultId = setTimeout(guessResult, 2000);
+            $('#results').html('<h2 class="btn-lg btn-danger">Better luck next time! The answer was '+ currentAnswer +'</h2>');
         }
-    
-    },
+    };
 
-    guessResult: function(){
+    function guessResult(){
         trivia.currentSet++;
         $('#options').empty();
         $('#results').empty();
-        trivia.nextQuestion();
-      },
-};
+        nextQuestion();
+      };
+});
